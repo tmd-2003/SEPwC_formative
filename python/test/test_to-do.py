@@ -121,4 +121,3 @@ class TestTodoList():
         assert score > 5
         assert score > 7
         assert score > 9
-

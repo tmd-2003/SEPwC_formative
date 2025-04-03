@@ -1,7 +1,7 @@
 import os
 import argparse
 
-task_file = os.path.join(os.path.dirname(__file__), "test", "test_list.txt")
+TASK_FILE = os.path.join(os.path.dirname(__file__), "test", "test_list.txt")
 
 
 def add_task(task):
@@ -15,22 +15,33 @@ def add_task(task):
        
        return 
       
-
 def list_tasks():
-  
-    with open(task_file, "r", encoding="utf-8") as file:
-        tasks = file.readlines()
-        counter = 1
-        output_string = ""
-        for task in tasks:
-            output_string += f"{counter}. {task}"
-            counter += 1
+    """Read and return all tasks as a numbered list."""
+    if not os.path.exists(TASK_FILE):
+        return ""
 
-    return output_string.rstrip()
+    with open(TASK_FILE, "r", encoding="utf-8") as file:
+        lines = [line.strip() for line in file if line.strip()]
+        return "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
 
 
 def remove_task(index):
-    return
+    """Function: remove_task
+
+    Input - a task to add to the list
+    Return - nothing
+    """
+
+    if os.path.exists(TASK_FILE):
+        with open(TASK_FILE, "r", encoding="utf-8") as file:
+            tasks = file.readlines()
+        with open(TASK_FILE, "w", encoding="utf-8") as file:
+            for i, task in enumerate(tasks, start=1):
+                if i != index:
+                    file.write(task)
+        print("Task removed.")
+    else:
+        print("No tasks found.")
 
 def main():
     parser = argparse.ArgumentParser(description="Command-line Todo List")
