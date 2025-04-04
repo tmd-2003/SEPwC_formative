@@ -1,3 +1,4 @@
+"""TASK TO DO LIST APPLICATION """
 import os
 import argparse
 
@@ -11,10 +12,9 @@ def add_task(task):
     Return - nothing
     """
     with open(TASK_FILE, "a", encoding="utf-8") as file:
-       file.write(task + "\n")
-       
-       return 
-      
+        file.write(task + "\n")
+        return
+
 def list_tasks():
     """Read and return all tasks as a numbered list."""
     if not os.path.exists(TASK_FILE):
@@ -44,6 +44,7 @@ def remove_task(index):
         print("No tasks found.")
 
 def main():
+    """ SOMETHING """
     parser = argparse.ArgumentParser(description="Command-line Todo List")
     parser.add_argument(
             "-a",
