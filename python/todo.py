@@ -44,7 +44,7 @@ def remove_task(index):
         print("No tasks found.")
 
 def main():
-    """ SOMETHING """
+    """ a help page for the user """
     parser = argparse.ArgumentParser(description="Command-line Todo List")
     parser.add_argument(
             "-a",
